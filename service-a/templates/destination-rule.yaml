@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{.Chart.Name}}-{{ .Release.Namespace }}-destination-rule
+  namespace: {{ .Release.Namespace }}
+spec:
+  host: {{.Chart.Name}}.{{ .Release.Namespace }}.svc.cluster.local
+  subsets:
+  {{- range .Values.destinationRule.subsets }}
+    - name: {{ .name }}
+      labels: {{ toYaml .labels | nindent 8 }}
+  {{- end }}

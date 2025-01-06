@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Namespace }}-virtual-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+  {{- toYaml .Values.virtualService.hosts | nindent 2 }}
+  gateways:
+  {{- toYaml .Values.virtualService.gateways | nindent 2 }}
+  http:
+    - match:
+        - uri:
+            prefix: /a
+      route:
+        - destination:
+            host: {{.Chart.Name}}-service.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 8080

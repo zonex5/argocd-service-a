@@ -1,0 +1,27 @@
+virtualService:
+  hosts:
+    - "*"   # todo add real host ex. 'stage.licensepro.com'
+  gateways:
+    - "stage-gateway"
+
+canaryTrafficPercentage: 0
+
+app-service-a:
+  stable:
+    replicas: 1
+    image:
+      repository: localhost:5000
+      name: service-a
+      tag: stage
+  canary:
+    enabled: false
+  virtualService:
+    hosts:
+      - "*"   # todo add real host ex. 'stage.licensepro.com'
+    gateways:
+      - "stage-gateway"
+  destinationRule:
+    subsets:
+      - name: stable
+        labels:
+          version: stable

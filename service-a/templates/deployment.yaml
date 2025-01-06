@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Chart.Name}}-deployment
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{.Chart.Name}}
+    version: stable
+spec:
+  replicas: {{ .Values.stable.replicas }}
+  selector:
+    matchLabels:
+      app: {{.Chart.Name}}
+      version: stable
+  template:
+    metadata:
+      labels:
+        app: {{.Chart.Name}}
+        version: stable
+    spec:
+      containers:
+        - name: {{.Chart.Name}}-service
+          image: "{{ .Values.stable.image.repository }}/{{ .Values.stable.image.name }}:{{ .Values.stable.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

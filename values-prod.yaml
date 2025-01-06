@@ -1,0 +1,27 @@
+virtualService:
+  hosts:
+    - "*"   # todo add real host ex. 'licensepro.com'
+  gateways:
+    - "prod-gateway"
+
+canaryTrafficPercentage: 0
+
+app-service-a:
+  stable:
+    replicas: 1
+    image:
+      repository: localhost:5000
+      name: service-a
+      tag: prod
+  canary:
+    enabled: false
+  virtualService:
+    hosts:
+      - "*"   # todo add real host ex. 'licensepro.com'
+    gateways:
+      - "prod-gateway"
+  destinationRule:
+    subsets:
+      - name: stable
+        labels:
+          version: stable
