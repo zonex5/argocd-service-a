@@ -12,7 +12,7 @@ app-service-a:
     image:
       repository: localhost:5000
       name: service-a
-      tag: prod
+      tag: latest
   canary:
     enabled: false
   virtualService:
