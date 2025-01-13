@@ -24,3 +24,10 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: {{.Values.database.url}}
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{.Values.database.user}}
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: {{.Values.database.password}}

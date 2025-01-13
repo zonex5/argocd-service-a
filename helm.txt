@@ -1,0 +1,3 @@
+helm template app ./ --namespace stage --values values-stage.yaml > stage-deploy.yaml
+
+helm template app ./ --namespace stage --values values-prod.yaml > prod-deploy.yaml

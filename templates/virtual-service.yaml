@@ -14,6 +14,6 @@ spec:
             prefix: /a
       route:
         - destination:
-            host: {{.Chart.Name}}-service.{{ .Release.Namespace }}.svc.cluster.local
+            host: app-service-a-service.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 8080
