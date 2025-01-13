@@ -7,7 +7,7 @@ spec:
   hosts:
   {{- toYaml .Values.virtualService.hosts | nindent 2 }}
   gateways:
-  {{- toYaml .Values.virtualService.gateways | nindent 2 }}
+  {{- toYaml (list (printf "%s-gateway" .Release.Namespace)) | nindent 2 }}
   http:
     - match:
         - uri:
