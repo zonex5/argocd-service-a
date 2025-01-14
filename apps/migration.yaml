@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/zonex5/argocd-service-a.git
+    repoURL: https://github.com/zonex5/service-a.git
     targetRevision: HEAD
-    path: .
+    path: migrations
   destination:
     server: https://kubernetes.default.svc
     namespace: liquibase
