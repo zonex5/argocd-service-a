@@ -1,5 +1,5 @@
 liquibase:
-  url: "jdbc:postgresql://172.18.208.3:5432/service_a"
+  url: "jdbc:postgresql://172.18.208.3:5432/stage"
   user: "postgres"
   password: "postgres"
 
