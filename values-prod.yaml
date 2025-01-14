@@ -15,9 +15,9 @@ app-service-a:
   stable:
     replicas: 1
     image:
-      repository: localhost:5000
+      repository: zonex5cpb
       name: service-a
-      tag: latest
+      tag: "v.0.1"
   canary:
     enabled: false
   virtualService:
@@ -31,6 +31,6 @@ app-service-a:
         labels:
           version: stable
   database:
-    url: "jdbc:postgresql://172.18.208.3:5432/service_a"
+    url: "jdbc:postgresql://172.18.208.3:5432/production"
     user: "postgres"
     password: "postgres"
