@@ -28,11 +28,11 @@ spec:
           image: liquibase/liquibase:latest
           env:
             - name: LIQUIBASE_COMMAND_URL
-              value: "{{.Values.liquibase.url}}}"
+              value: "{{.Values.liquibase.url}}"
             - name: LIQUIBASE_COMMAND_USERNAME
-              value: "{{.Values.liquibase.user}}}"
+              value: "{{.Values.liquibase.user}}"
             - name: LIQUIBASE_COMMAND_PASSWORD
-              value: "{{.Values.liquibase.password}}}"
+              value: "{{.Values.liquibase.password}}"
           args:
             - "--changeLogFile=changelog.xml"
             - "update"
