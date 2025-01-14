@@ -1,0 +1,45 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: liquibase-migration
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      initContainers:
+        - name: git-clone
+          image: alpine/git:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              git clone https://github.com/zonex5/service-a /workspace
+          volumeMounts:
+            - name: changelog-volume
+              mountPath: /workspace
+      containers:
+        - name: liquibase
+          image: liquibase/liquibase:latest
+          env:
+            - name: LIQUIBASE_COMMAND_URL
+              value: "{{.Values.liquibase.url}}}"
+            - name: LIQUIBASE_COMMAND_USERNAME
+              value: "{{.Values.liquibase.user}}}"
+            - name: LIQUIBASE_COMMAND_PASSWORD
+              value: "{{.Values.liquibase.password}}}"
+          args:
+            - "--changeLogFile=changelog.xml"
+            - "update"
+          workingDir: /repo/migrations
+          volumeMounts:
+            - name: changelog-volume
+              mountPath: /repo
+      volumes:
+        - name: changelog-volume
+          emptyDir: { }
