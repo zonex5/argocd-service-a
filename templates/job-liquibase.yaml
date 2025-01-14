@@ -1,9 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: migrations
+
 ---
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: liquibase-migration
-  namespace: {{ .Release.Namespace }}
+  namespace: migrations
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
