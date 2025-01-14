@@ -23,8 +23,7 @@ spec:
       initContainers:
         - name: git-clone
           image: alpine/git:latest
-          command:
-            - /bin/sh -c git clone https://github.com/zonex5/service-a /workspace
+          command: [ "/bin/sh", "-c", "git clone https://github.com/zonex5/service-a /workspace" ]
           volumeMounts:
             - name: changelog-volume
               mountPath: /workspace
