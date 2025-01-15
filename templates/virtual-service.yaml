@@ -12,6 +12,10 @@ spec:
     - match:
         - uri:
             prefix: /values
+        - uri:
+            prefix: /test
+        - uri:
+            prefix: /env
       route:
         - destination:
             host: app-service-a-service.{{ .Release.Namespace }}.svc.cluster.local
