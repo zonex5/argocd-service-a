@@ -25,7 +25,6 @@ spec:
               mountPath: /workspace
             - name: ssh-key-volume
               mountPath: /root/.ssh
-              readOnly: true
       containers:
         - name: liquibase
           image: liquibase/liquibase:latest
