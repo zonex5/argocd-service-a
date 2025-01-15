@@ -15,7 +15,11 @@ spec:
         - name: git-clone
           image: alpine/git:latest
           #command: [ "/bin/sh", "-c", "git clone https://github.com/zonex5/service-a /workspace" ]
-          command: [ "/bin/sh", "-c", "apk add --no-cache openssh && mkdir -p /root/.ssh && cp /root/.ssh/id_rsa /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa && ssh-keyscan -H github.com >> /root/.ssh/known_hosts && git clone git@github.com:zonex5/service-a.git /workspace" ]
+          #command: [ "/bin/sh", "-c", "apk add --no-cache openssh && mkdir -p /root/.ssh && cp /root/.ssh/id_rsa /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa && ssh-keyscan -H github.com >> /root/.ssh/known_hosts && git clone git@github.com:zonex5/service-a.git /workspace" ]
+          command: [ "/bin/sh", "-c", "apk add --no-cache openssh && \
+                      mkdir -p /root/.ssh && \
+                      ssh-keyscan -H github.com >> /root/.ssh/known_hosts && \
+                      git clone git@github.com:zonex5/service-a.git /workspace" ]
           volumeMounts:
             - name: changelog-volume
               mountPath: /workspace
