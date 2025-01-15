@@ -31,3 +31,5 @@ spec:
               value: {{.Values.database.user}}
             - name: SPRING_DATASOURCE_PASSWORD
               value: {{.Values.database.password}}
+            - name: ENVIRONMENT
+              value: {{.Values.environment}}

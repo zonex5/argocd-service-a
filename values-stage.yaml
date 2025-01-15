@@ -12,6 +12,7 @@ virtualService:
 canaryTrafficPercentage: 0
 
 app-service-a:
+  environment: STAGE
   stable:
     replicas: 1
     image:
