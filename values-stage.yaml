@@ -17,7 +17,7 @@ app-service-a:
     image:
       repository: zonex5cpb
       name: service-a
-      tag: "1.7"
+      tag: "1.8"
   canary:
     enabled: false
   virtualService:
