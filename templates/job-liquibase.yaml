@@ -15,11 +15,6 @@ spec:
         - name: git-clone
           image: alpine/git:latest
           #command: [ "/bin/sh", "-c", "git clone https://github.com/zonex5/service-a /workspace" ]
-          #command: [ "/bin/sh", "-c", "apk add --no-cache openssh && \
-          #            mkdir -p /tmp/.ssh && \
-          #            cp /root/.ssh/id_rsa /tmp/.ssh/id_rsa && chmod 600 /tmp/.ssh/id_rsa && \
-          #            ssh-keyscan -H github.com > /tmp/.ssh/known_hosts && \
-          #            GIT_SSH_COMMAND='ssh -o UserKnownHostsFile=/tmp/.ssh/known_hosts -i /tmp/.ssh/id_rsa' git clone git@github.com:zonex5/service-a.git /workspace" ]
           command: [ "/bin/sh", "-c", "mkdir -p /tmp/.ssh && \
                       cp /root/.ssh/id_rsa /tmp/.ssh/id_rsa && chmod 600 /tmp/.ssh/id_rsa && \
                       ssh-keyscan -H github.com > /tmp/.ssh/known_hosts && \
