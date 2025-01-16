@@ -1,0 +1,1 @@
+kubectl create secret generic argocd-access-key-secret -n migrations --from-file=id_rsa=deploy_key
