@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-deployment
+  labels:
+    app: ui-stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui-stage
+  template:
+    metadata:
+      labels:
+        app: ui-stage
+    spec:
+      containers:
+        - name: ui-stage
+          image: zonex5cpb/ui-server:v.1
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-service
+  labels:
+    app: ui-stage
+spec:
+  selector:
+    app: ui-stage
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
