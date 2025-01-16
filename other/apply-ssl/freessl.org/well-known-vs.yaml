@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: well-known-files
+  namespace: default
+data:
+  fileauth.txt: |
+    202501141829422kcfkcrmigl57vjz3psb5ne0hamz0y3u9tulzw33mz31ntbsq1
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-files
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static-files
+  template:
+    metadata:
+      labels:
+        app: static-files
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27.3-alpine3.20
+        volumeMounts:
+        - name: well-known-volume
+          mountPath: /usr/share/nginx/html/.well-known/pki-validation
+      volumes:
+      - name: well-known-volume
+        configMap:
+          name: well-known-files
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-files
+  namespace: default
+spec:
+  selector:
+    app: static-files
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: main-gateway
+  namespace: default
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: static-files-routing
+  namespace: default
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - main-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/.well-known/pki-validation"
+    route:
+    - destination:
+        host: static-files.default.svc.cluster.local
+        port:
+          number: 80
+    
