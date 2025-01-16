@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: ui-deployment
   labels:
-    app: ui-stage
+    app: ui-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ui-stage
+      app: ui-app
   template:
     metadata:
       labels:
-        app: ui-stage
+        app: ui-app
     spec:
       containers:
-        - name: ui-stage
+        - name: ui-app
           image: zonex5cpb/ui-server:v.1
           ports:
             - containerPort: 80
@@ -26,10 +26,10 @@ kind: Service
 metadata:
   name: ui-service
   labels:
-    app: ui-stage
+    app: ui-app
 spec:
   selector:
-    app: ui-stage
+    app: ui-app
   ports:
     - protocol: TCP
       port: 80

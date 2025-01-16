@@ -21,7 +21,7 @@ spec:
             host: app-service-a-service.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 8080
-      # default request
-      - route:
-          - destination:
-              host: ui-service
+    # default request
+    - route:
+        - destination:
+            host: ui-service
