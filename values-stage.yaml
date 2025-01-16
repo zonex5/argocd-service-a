@@ -5,9 +5,7 @@ liquibase:
 
 virtualService:
   hosts:
-    - "*"   # todo add real host ex. 'stage.licensepro.com'
-  gateways:
-    - "stage-gateway"
+    - "stage.toway.xyz"   # todo add real host ex. 'stage.licensepro.com'
 
 canaryTrafficPercentage: 0
 
@@ -21,11 +19,6 @@ app-service-a:
       tag: "1.9"
   canary:
     enabled: false
-  virtualService:
-    hosts:
-      - "*"   # todo add real host ex. 'stage.licensepro.com'
-    gateways:
-      - "stage-gateway"
   destinationRule:
     subsets:
       - name: stable
