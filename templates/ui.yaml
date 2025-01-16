@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ui-app
-          image: zonex5cpb/ui-server:v.1
+          image: "zonex5cpb/ui-server:{{ .Values.ui.version}}:
           ports:
             - containerPort: 80
 

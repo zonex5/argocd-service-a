@@ -3,6 +3,9 @@ liquibase:
   user: "postgres"
   password: "postgres"
 
+ui:
+  version: "prod.1"
+
 virtualService:
   hosts:
     - "toway.xyz"   # todo add real host ex. 'licensepro.com'
