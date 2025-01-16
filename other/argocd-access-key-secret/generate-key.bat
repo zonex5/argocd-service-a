@@ -1,0 +1,1 @@
+ssh-keygen -t rsa -b 4096 -C "argocd-access-key-secret" -f deploy_key -N ""
