@@ -16,7 +16,7 @@ app-service-a:
     image:
       repository: zonex5cpb
       name: service-a
-      tag: "v.0.1"
+      tag: "1.9"
   canary:
     enabled: false
   destinationRule:
