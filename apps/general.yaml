@@ -16,6 +16,7 @@ spec:
         - "toway.xyz"
         - "stage.toway.xyz"
         - "argocd.toway.xyz"
+        - "kiali.toway.xyz"
       tls:
         httpsRedirect: true
     - port:
@@ -26,6 +27,7 @@ spec:
         - "toway.xyz"
         - "stage.toway.xyz"
         - "argocd.toway.xyz"
+        - "kiali.toway.xyz"
       tls:
         mode: SIMPLE
         credentialName: toway-xyz-tls-secret
